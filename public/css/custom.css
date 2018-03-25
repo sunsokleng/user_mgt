@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Content');
+
+
+p.khmer,
+.modal-content .kh {
+	font-family: 'khmer mef1';
+	font-size: 14px;
+}
+
+body {
+	-vendor-animation-duration: 1s;
+	-vendor-animation-delay: 10s;
+	-vendor-animation-iteration-count: infinite;
+}
+
+#search-form > div {
+	width: 100% !important;
+}
+
+@media only screen and (max-width: 320px) {
+	#image {
+		width: 100%;
+	}
+}
+
+@media (max-width: 767px) {
+	.main-header .logo {
+		display: none !important;
+	}
+
+	.fixed .content-wrapper, .right-side {
+		padding-top: 50px;
+	}
+
+	.sidebar-open .main-sidebar {
+		padding-top: 50px;
+	}
+}
+
+.url-word-wrap {
+	word-wrap: break-word
+}
+
+.news-image {
+	background-image: url(http://news-source.local/images/news-default.jpg);
+	width: 200px;
+	height: 200px;
+	background-size: contain;
+}
+
+code {
+	font-family: 'Content', cursive !important;
+	line-height: 1.6 !important;
+}
+
+.box-title{
+	width: 100% !important;
+}
+
+.margin-top-5{
+	margin-top: 8px;
+}
+.red {
+	color: red;
+}
