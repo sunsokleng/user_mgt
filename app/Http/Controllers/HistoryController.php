@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use App\Models\National;
-use App\Models\NationalUser;
+use App\Models\History;
 use App\Models\NationalUserModuleRoles;
 use App\Models\OfficeName;
 use App\Models\Position;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Faker\Provider\File;
 use Illuminate\Support\Facades\Storage;
 
-class NationalUserController extends Controller
+class HistoryController extends Controller
 {
 
 
@@ -26,11 +26,11 @@ class NationalUserController extends Controller
      * will list all Users
      */
     public function index(){
-        $nationalusers = NationalUser::get();
+        $historys = History::get();
         //map data that get from database with one key in array associative
-        $output['nationalusers'] = $nationalusers;
+        $output['historys'] = $historys;
 
-        return view('nationaluser.index')->with($output);
+        return view('history.index')->with($output);
     }
 
 
@@ -47,11 +47,11 @@ class NationalUserController extends Controller
         $output['positions']= Position::all();
         $output['officenames']= OfficeName::all();
         if ($id!=null){
-            $nationaluser = NationalUser::find($id);
+            $historys = History::find($id);
 
-            $output['model']=$nationaluser;
+            $output['model']=$historys;
         }
-        return view('nationaluser.form')->with($output);
+        return view('history.form')->with($output);
     }
 
     /**
@@ -83,8 +83,8 @@ class NationalUserController extends Controller
             $nationaluser->userModuleRoles()->delete();
             foreach ($request->module as $key => $value){
                 $data = array(  'nationaluser_id' =>$nationaluser->id,
-                                'module_id' => $request->module[$key],
-                                'role_id' => $request->role[$key],
+                    'module_id' => $request->module[$key],
+                    'role_id' => $request->role[$key],
                 );
                 $nationalUserModuleRoles = new NationalUserModuleRoles();
                 $nationalUserModuleRoles->fill($data);

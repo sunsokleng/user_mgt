@@ -63,7 +63,7 @@
 										value="{{isset($model)?$model->khmername:''}}">
 							</div>
 							<div class="form-group">
-								<label for="">User Name</label>
+								<label for="">User Name ឈ្មោះក្នុងប្រព័ន្ធ</label>
 								<input
 										type="text"
 										name="input[username]"

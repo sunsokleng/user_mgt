@@ -63,6 +63,10 @@ Route::get('/officename/form/{id?}', 'OfficeNameController@form');
 Route::post('/officename/save', 'OfficeNameController@save');
 Route::get('/officename/delete/{id}', 'OfficeNameController@delete');
 
+Route::get('/history', 'HistoryController@index');
+Route::get('/history/form/{id?}', 'HistoryController@form');
+Route::post('/history/save', 'HistoryController@save');
+Route::get('/history/delete/{id}', 'HistoryController@delete');
 
 Auth::routes();
 
