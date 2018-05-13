@@ -2,10 +2,10 @@
 @section('content')
 	<section class="content-header">
 		<h1>
-			National User
+			Employee
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> National User Info</a></li>
+			<li><a href="#"><i class="fa fa-dashboard"></i> Employee Info</a></li>
 			<li class="active">Form</li>
 		</ol>
 	</section>
@@ -21,7 +21,7 @@
 					</div>
 					<!-- /.box-header -->
 					<!-- form start -->
-					<form role="form" method="post" action="{{url('/nationaluser/save')}}" enctype="multipart/form-data">
+					<form role="form" method="post" action="{{url('/employee/save')}}" enctype="multipart/form-data">
 						
 						{{csrf_field()}}
 						@if(isset($model))
@@ -30,56 +30,33 @@
 						<div style="clear:both;">
 						<div class="col-md-6" style="background:#fff;">
 							<div class="form-group">
-								<label for="">National</label>
+								<label for="">ឈ្មោះមន្រ្តី</label>
+								<input
+										type="text"
+										name="input[name]"
+										class="form-control"
+										value="{{isset($model)?$model->name:''}}" >
+							</div>
+							<div class="form-group">
+								<label for="">ភេទ</label>
 								<select
-										name="input[national_id]"
+										name="input[sex]"
+										required
 										class="form-control select2">
-
-									@if(isset($nationals))
-										@foreach($nationals as $national)
-											<option
-													value="{{$national->id}}"
-													{{isset($model)&&$model->national_id==$national->id?'selected':''}}>
-												{{$national->name}}
-											</option>
-										@endforeach
-									@endif
+									<option
+											value="ប្រុស"
+											{{isset($model)&&$model->sex=='M'?'selected':''}}>
+										Male
+									</option>
+									<option
+											value="ស្រី"
+											{{isset($model)&&$model->sex=='F'?'selected':''}}>
+										Female
+									</option>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="">English Name ឈ្មោះឡាតាំង</label>
-								<input
-										type="text"
-										name="input[englishname]"
-										class="form-control"
-										value="{{isset($model)?$model->englishname:''}}" >
-							</div>
-							<div class="form-group">
-								<label for="">Khmer Name ឈ្មោះអក្សរខ្មែរ</label>
-								<input
-										type="text"
-										name="input[khmername]"
-										class="form-control"
-										value="{{isset($model)?$model->khmername:''}}">
-							</div>
-							<div class="form-group">
-								<label for="">User Name ឈ្មោះក្នុងប្រព័ន្ធ</label>
-								<input
-										type="text"
-										name="input[username]"
-										class="form-control"
-										value="{{isset($model)?$model->username:''}}">
-							</div>
-							<div class="form-group">
-								<label for="">Alias Name</label>
-								<input
-										type="text"
-										name="input[aliasname]"
-										class="form-control"
-										value="{{isset($model)?$model->aliasname:''}}">
-							</div>
-							<div class="form-group">
-								<label for="">Position</label>
+								<label for="">មុខតំណែង</label>
 								<select
 										name="input[position_id]"
 										class="form-control select2">
@@ -95,36 +72,12 @@
 									@endif
 								</select>
 							</div>
-							<div class="form-group">
-								<label for="">Office Name</label>
-								<select
-										name="input[officename_id]"
-										class="form-control select2">
 
-									@if(isset($officenames))
-										@foreach($officenames as $officename)
-											<option
-													value="{{$officename->id}}"
-													{{isset($model)&&$model->officename_id==$officename->id?'selected':''}}>
-												{{$officename->name}}
-											</option>
-										@endforeach
-									@endif
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="">Modules</label>
-								<input
-										type="text"
-										name="input[modules]"
-										class="form-control"
-										value="{{isset($model)?$model->modules:''}}">
-							</div>
 						</div>
 
 						<div class="col-md-6" style="background:#fff;">
 							<div class="form-group">
-								<label for="">Telephone</label>
+								<label for="">លេខទូរស័ព្ទ</label>
 								<input
 										type="text"
 										name="input[telephone]"
@@ -132,29 +85,20 @@
 										value="{{isset($model)?$model->telephone:''}}">
 							</div>
 							<div class="form-group">
-								<label for="">Date First Update</label>
+								<label for="">Email</label>
 								<input
 										type="text"
-										id="datepicker2"
-										name="input[date_firstupdate]"
-										value="{{isset($model)?$model->date_firstupdate:null}}"
-										class="form-control">
+										name="input[email]"
+										class="form-control"
+										value="{{isset($model)?$model->email:''}}">
 							</div>
 							<div class="form-group">
-								<label for="">Date Second Update</label>
+								<label for="">អាស័យដ្ឋាន</label>
 								<input
 										type="text"
-										id="datepicker3"
-										name="input[date_secondupdate]"
-										value="{{isset($model)?$model->date_secondupdate:''}}"
-										class="form-control">
-							</div>
-							<div class="form-group col-md-3">
-								<label for="">Image</label>
-								<input type="file" id="image" name="image" >
-								@if (isset($model))
-									<img src="{{asset('storage/'.$model->image)}}" style="width: 100px" alt="">
-								@endif
+										name="input[address]"
+										class="form-control"
+										value="{{isset($model)?$model->address:''}}">
 							</div>
 							<div class="form-group col-md-3">
 								<label for="">Active</label></br>
@@ -163,106 +107,12 @@
 									   value="1"
 										{{isset($model)&&$model->active==1? 'checked':''}}>
 							</div>
-							<div class="form-group">
-								<table class="table table-bordered">
-									<thead>
-									<th>Module</th>
-									<th>Role</th>
-									<th style="text-align: center" width="30px"><a href="#" class="addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
-									</thead>
-									<tbody>
-									@if(isset($model)&&!empty($model->userModuleRoles))
-										@foreach($model->userModuleRoles as $userModuleRole)
-											<tr>
-												<td>
-													<select
-															name="module[]"
-															class="form-control module">
-														@if(isset($modules))
-															@foreach($modules as $module)
-																<option
-																		value="{{$module->id}}"
-																		{{isset($model)&&$userModuleRole->module_id==$module->id?'selected':''}}>
-																	{{$module->name}}
-																</option>
-															@endforeach
-														@endif
-													</select>
-												</td>
-												<td>
-													<select
-															name="role[]"
-															class="form-control role">
-														@if(isset($roles))
-															@foreach($roles as $role)
-																<option
-																		value="{{$role->id}}"
-																		{{isset($model)&&$userModuleRole->role_id==$role->id?'selected':''}}>
-																	{{$role->name}}
-																</option>
-															@endforeach
-														@endif
-													</select>
-												</td>
-												<td><a href="#" class="btn btn-danger remove"><i class="glyphicon glyphicon-remove"></i> </a> </td>
-											</tr>
-										@endforeach
-									@else
-										<tr>
-											<td>
-												<select
-														name="module[]"
-														class="form-control module">
-													@if(isset($modules))
-														@foreach($modules as $module)
-															<option
-																	value="{{$module->id}}"
-																	{{isset($model)&&$userModuleRole->module_id==$module->id?:''}}>
-																{{$module->name}}
-															</option>
-														@endforeach
-													@endif
-												</select>
-											</td>
-											<td>
-												<select
-														name="role[]"
-														class="form-control role">
-													@if(isset($roles))
-														@foreach($roles as $role)
-															<option
-																	value="{{$role->id}}"
-																	{{isset($model)&&$userModuleRole->role_id==$role->id?:''}}>
-																{{$role->name}}
-															</option>
-														@endforeach
-													@endif
-												</select>
-											</td>
-											<td><a href="#" class="btn btn-danger remove"><i class="glyphicon glyphicon-remove"></i> </a> </td>
-										</tr>
-									@endif
-
-
-									</tbody>
-
-								</table>
-							</div>
-
 
 						</div>
-							<div class="form-group col-md-12">
-								<label>Comments:</label>
-								<textarea
-										class="form-control"
-										name="input[comments]"
-										rows="5"
-								>{{isset($model)?$model->comments:''}}</textarea>
-							</div>
+
 							<div class="box-footer col-xs-6">
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
-
 
 					</form>
 				</div>
@@ -288,57 +138,5 @@
         $('#datepicker3').datepicker({
             format: 'yyyy-mm-dd',
         })
-
-		$(document).ready(function() {
-            $('.multiple').select2();
-        })
-
-		$('.addRow').on('click', function(){
-		    addRow();
-		});
-		function addRow()
-		{
-			var tr= '<tr>'+
-						'<td>'+
-						'<select name="module[]" class="form-control module">'+
-						'@if(isset($modules))'+
-						'@foreach($modules as $module)'+
-						'<option value="{{$module->id}}"'+
-						'		{{isset($model)&&$model->module_id==$module->id?'selected':''}}>'+
-						'		{{$module->name}} </option>'+
-						'@endforeach'+
-					 	'@endif'+
-						'</select>'+
-						'</td>'+
-						'<td>'+
-						'<select name="role[]" class="form-control role">'+
-						'@if(isset($roles))'+
-						'@foreach($roles as $role)'+
-						'<option value="{{$role->id}}" {{isset($model)&&$model->role_id==$role->id?'selected':''}}> {{$role->name}} </option>'+
-						'@endforeach'+
-						'@endif'+
-						'</select>'+
-						'</td>'+
-						'<td><a href="#" class="btn btn-danger remove"><i class="glyphicon glyphicon-remove"></i> </a> </td>'+
-					'</tr>';
-			$('tbody').append(tr);
-            $('.remove').on('click', function () {
-                var l=$('tbody tr').length;
-                if(l>1){
-                    $(this).parent().parent().remove();
-                }
-            });
-        };
-        $('.remove').on('click', function () {
-            var l=$('tbody tr').length;
-            if(l>1){
-                $(this).parent().parent().remove();
-            }
-        });
-
-
-
 	</script>
-
-
 @endpush

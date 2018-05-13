@@ -2,10 +2,10 @@
 @section('content')
 <section class="content-header">
 	<h1>
-		National User
+		Employee Info
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> National User</a></li>
+		<li><a href="#"><i class="fa fa-dashboard"></i> Employee Info</a></li>
 		<li class="active">Index</li>
 	</ol>
 </section>
@@ -23,31 +23,28 @@
 					<table class="table table-bordered" id="book-list">
 						<thead>
 						<tr>
-							<th>National ID</th>
-							<th>English Name</th>
-							<th >Khmer Name</th>
-							<th>User Name</th>
-							<th>Alias Name</th>
-							<th>Position</th>
-							<th>Telephone</th>
-
+							<th>ឈ្មោះមន្រ្តី</th>
+							<th >ភេទ</th>
+							<th>មុខតំណែង</th>
+							<th>លេខទូរស័ព្ទ</th>
+							<th>Email</th>
+							<th>អាស័យដ្ឋាន</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
-						@if(isset($nationalusers))
-							@foreach($nationalusers as $nationaluser)
+						@if(isset($employees))
+							@foreach($employees as $employee)
 								<tr>
-									<td>{{$nationaluser->national->name}}</td>
-									<td>{{$nationaluser->englishname}}</td>
-									<td>{{$nationaluser->khmername}}</td>
-									<td>{{$nationaluser->username}}</td>
-									<td>{{$nationaluser->aliasname}}</td>
-									<td>{{$nationaluser->position}}</td>
-									<td>{{$nationaluser->telephone}}</td>
+									<td>{{$employee->name}}</td>
+									<td>{{$employee->sex}}</td>
+									<td>{{$employee->position_name}}</td>
+									<td>{{$employee->telephone}}</td>
+									<td>{{$employee->email}}</td>
+									<td>{{$employee->address}}</td>
 									<td>
-										<a href="{{url('/nationaluser/form/'.$nationaluser->id)}}" class="btn btn-info">Edit</a>
-										<a href="{{url('/nationaluser/delete/'.$nationaluser->id)}}" class="btn btn-danger">Delete</a>
+										<a href="{{url('/employee/form/'.$employee->id)}}" class="btn btn-info">Edit</a>
+										<a href="{{url('/employee/delete/'.$employee->id)}}" class="btn btn-danger">Delete</a>
 									</td>
 								</tr>
 							@endforeach

@@ -68,6 +68,11 @@ Route::get('/history/form/{id?}', 'HistoryController@form');
 Route::post('/history/save', 'HistoryController@save');
 Route::get('/history/delete/{id}', 'HistoryController@delete');
 
+Route::get('/employee', 'EmployeeController@index');
+Route::get('/employee/form/{id?}', 'EmployeeController@form');
+Route::post('/employee/save', 'EmployeeController@save');
+Route::get('/employee/delete/{id}', 'EmployeeController@delete');
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index');

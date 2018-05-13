@@ -131,6 +131,18 @@
 					<li><a href="{{url('/history/form')}}"><i class="fa fa-chevron-circle-right"></i> Add</a></li>
 				</ul>
 			</li>
+			<li class=" treeview">
+				<a href="#">
+					<i class="fa fa-bank"></i> <span>Employee</span>
+					<span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="{{url('/employee')}}"><i class="fa fa-chevron-circle-right"></i> List</a></li>
+					<li><a href="{{url('/employee/form')}}"><i class="fa fa-chevron-circle-right"></i> Add</a></li>
+				</ul>
+			</li>
 		</ul>
 	</section>
 	<!-- /.sidebar -->
